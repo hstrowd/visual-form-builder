@@ -1,0 +1,601 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Visual Form Builder 1.9.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-12 00:48+0100\n"
+"PO-Revision-Date: 2012-03-12 01:41+0100\n"
+"Last-Translator: Samuel Aguilera <correo@samuelaguilera.com>\n"
+"Language-Team: Samuel Aguilera <correo@samuelaguilera.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;esc_html__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: Spain\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class-entries-detail.php:38
+#: class-entries-detail.php:92
+msgid "Entry"
+msgstr "Entrada"
+
+#: class-entries-detail.php:43
+msgid "Details"
+msgstr "Detalles"
+
+#: class-entries-detail.php:49
+msgid "Form Title"
+msgstr "Título formulario"
+
+#: class-entries-detail.php:52
+#: class-entries-list.php:98
+#: class-entries-list.php:222
+msgid "Date Submitted"
+msgstr "Fecha envío"
+
+#: class-entries-detail.php:55
+#: class-entries-list.php:97
+#: class-entries-list.php:226
+msgid "IP Address"
+msgstr "Dirección IP"
+
+#: class-entries-detail.php:58
+#: class-entries-list.php:93
+#: class-entries-list.php:230
+msgid "Email Subject"
+msgstr "Asunto email"
+
+#: class-entries-detail.php:61
+#: class-entries-list.php:94
+#: class-entries-list.php:234
+#: visual-form-builder.php:1464
+#: visual-form-builder.php:1564
+msgid "Sender Name"
+msgstr "Nombre remitente"
+
+#: class-entries-detail.php:64
+#: class-entries-list.php:95
+#: class-entries-list.php:238
+#: visual-form-builder.php:1569
+msgid "Sender Email"
+msgstr "Email remitente"
+
+#: class-entries-detail.php:67
+#: class-entries-list.php:96
+#: class-entries-list.php:242
+msgid "Emailed To"
+msgstr "Enviado a"
+
+#: class-entries-list.php:67
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: class-entries-list.php:92
+#: class-entries-list.php:218
+msgid "Form"
+msgstr "Formulario"
+
+#: class-entries-list.php:168
+msgid "Delete"
+msgstr "Borrar"
+
+#: class-entries-list.php:169
+msgid "Export All"
+msgstr "Exportar todo"
+
+#: class-entries-list.php:170
+msgid "Export Selected"
+msgstr "Exportar seleccionado"
+
+#: class-entries-list.php:214
+msgid "Entries ID"
+msgstr "ID entradas"
+
+#: class-entries-list.php:402
+msgid "View all forms"
+msgstr "Ver todos los formularios"
+
+#: class-entries-list.php:409
+msgid "Filter"
+msgstr "Filtrar"
+
+#: visual-form-builder.php:118
+msgid "<div id=\"message\" class=\"updated\"><p>The form has been successfully created.</p></div>"
+msgstr "<div id=\"message\" class=\"updated\"><p>El formulario ha sido creado correctamente.</p></div>"
+
+#: visual-form-builder.php:121
+#, php-format
+msgid "<div id=\"message\" class=\"updated\"><p>The <strong>%s</strong> form has been updated.</p></div>"
+msgstr "<div id=\"message\" class=\"updated\"><p>El formulario <strong>%s</strong> ha sido actualizado.</p></div>"
+
+#: visual-form-builder.php:124
+msgid "<div id=\"message\" class=\"updated\"><p>The form has been successfully deleted.</p></div>"
+msgstr "<div id=\"message\" class=\"updated\"><p>El formulario borrado correctamente.</p></div>"
+
+#: visual-form-builder.php:127
+msgid "<div id=\"message\" class=\"updated\"><p>The form has been successfully duplicated.</p></div>"
+msgstr "<div id=\"message\" class=\"updated\"><p>El formulario ha sido duplicado correctamente.</p></div>"
+
+#: visual-form-builder.php:416
+msgid "Settings"
+msgstr "Ajustes"
+
+#: visual-form-builder.php:429
+#: visual-form-builder.php:1277
+msgid "Visual Form Builder"
+msgstr "Visual Form Builder"
+
+#: visual-form-builder.php:459
+#, php-format
+msgid "<div id=\"message\" class=\"updated\"><p>The <strong>%s</strong> form has been created.</p></div>"
+msgstr "<div id=\"message\" class=\"updated\"><p>El formulario <strong>%s</strong> ha sido creado.</p></div>"
+
+#: visual-form-builder.php:1000
+msgid "Edit Field Item"
+msgstr "Editar elementos del campo"
+
+#: visual-form-builder.php:1015
+#: visual-form-builder.php:1035
+#: visual-form-builder.php:1212
+msgid "CSS Classes"
+msgstr "Clases CSS"
+
+#: visual-form-builder.php:1024
+#: visual-form-builder.php:1045
+msgid "Name"
+msgstr "Nombre"
+
+#: visual-form-builder.php:1053
+msgid "Description"
+msgstr "Descripción"
+
+#: visual-form-builder.php:1063
+msgid "Options"
+msgstr "Opciones"
+
+#: visual-form-builder.php:1117
+msgid "Accepted File Extensions"
+msgstr "Extensiones aceptadas"
+
+#: visual-form-builder.php:1130
+msgid "Validation"
+msgstr "Validación"
+
+#: visual-form-builder.php:1133
+msgid "12 Hour Format"
+msgstr "Formato 12 horas"
+
+#: visual-form-builder.php:1134
+msgid "24 Hour Format"
+msgstr "Formato 24 horas"
+
+#: visual-form-builder.php:1136
+msgid "None"
+msgstr "Ninguno"
+
+#: visual-form-builder.php:1137
+msgid "Email"
+msgstr "Email"
+
+#: visual-form-builder.php:1138
+msgid "URL"
+msgstr "URL"
+
+#: visual-form-builder.php:1139
+msgid "Date"
+msgstr "Fecha"
+
+#: visual-form-builder.php:1140
+msgid "Number"
+msgstr "Número"
+
+#: visual-form-builder.php:1141
+msgid "Digits"
+msgstr "Dígitos"
+
+#: visual-form-builder.php:1142
+msgid "Phone"
+msgstr "Teléfono"
+
+#: visual-form-builder.php:1151
+msgid "Required"
+msgstr "Obligatorio"
+
+#: visual-form-builder.php:1153
+msgid "No"
+msgstr "No"
+
+#: visual-form-builder.php:1154
+msgid "Yes"
+msgstr "Sí"
+
+#: visual-form-builder.php:1163
+msgid "Size"
+msgstr "Tamaño"
+
+#: visual-form-builder.php:1165
+msgid "Small"
+msgstr "Pequeño"
+
+#: visual-form-builder.php:1166
+msgid "Medium"
+msgstr "Medio"
+
+#: visual-form-builder.php:1167
+msgid "Large"
+msgstr "Grande"
+
+#: visual-form-builder.php:1176
+msgid "Options Layout"
+msgstr "Formato opciones"
+
+#: visual-form-builder.php:1178
+msgid "One Column"
+msgstr "Una columna"
+
+#: visual-form-builder.php:1179
+msgid "Two Columns"
+msgstr "Dos columnas"
+
+#: visual-form-builder.php:1180
+msgid "Three Columns"
+msgstr "Tres columnas"
+
+#: visual-form-builder.php:1181
+msgid "Auto Width"
+msgstr "Ancho automático"
+
+#: visual-form-builder.php:1190
+msgid "Field Layout"
+msgstr "Ubicación campo"
+
+#: visual-form-builder.php:1193
+msgid "Default"
+msgstr "Predeterminada"
+
+#: visual-form-builder.php:1195
+msgid "Left Half"
+msgstr "Mitad izquierda"
+
+#: visual-form-builder.php:1196
+msgid "Right Half"
+msgstr "Mitad derecha"
+
+#: visual-form-builder.php:1199
+msgid "Left Third"
+msgstr "Un tercio izquierda"
+
+#: visual-form-builder.php:1200
+msgid "Middle Third"
+msgstr "Un tercio centro"
+
+#: visual-form-builder.php:1201
+msgid "Right Third"
+msgstr "Un tercio derecha"
+
+#: visual-form-builder.php:1204
+msgid "Left Two Thirds"
+msgstr "Dos tercios izquierda"
+
+#: visual-form-builder.php:1205
+msgid "Right Two Thirds"
+msgstr "Dos tercios derecha"
+
+#: visual-form-builder.php:1222
+msgid "Remove"
+msgstr "Eliminar"
+
+#: visual-form-builder.php:1279
+msgid "Forms"
+msgstr "Formularios"
+
+#: visual-form-builder.php:1280
+msgid "Entries"
+msgstr "Entradas"
+
+#: visual-form-builder.php:1319
+msgid "Form Items"
+msgstr "Elementos del formulario"
+
+#: visual-form-builder.php:1322
+msgid "Click"
+msgstr "Haz clic"
+
+#: visual-form-builder.php:1322
+msgid "to Add a Field"
+msgstr "para añadir un campo"
+
+#: visual-form-builder.php:1348
+msgid "Form Output"
+msgstr "Salida del formulario"
+
+#: visual-form-builder.php:1351
+msgid "Copy this shortcode and paste into any Post or Page."
+msgstr "Copia este código y pégalo en cualquier entrada o página."
+
+#: visual-form-builder.php:1414
+#: visual-form-builder.php:1416
+msgid "Add form"
+msgstr "Añadir formulario"
+
+#: visual-form-builder.php:1432
+msgid "Form Name"
+msgstr "Nombre formulario"
+
+#: visual-form-builder.php:1437
+msgid "Duplicate Form"
+msgstr "Duplicar formulario"
+
+#: visual-form-builder.php:1447
+msgid "Customize Email Details"
+msgstr "Personalizar detalles del email"
+
+#: visual-form-builder.php:1447
+msgid "Email Details"
+msgstr "Detalles del email"
+
+#: visual-form-builder.php:1448
+msgid "Customize Confirmation Message"
+msgstr "Personalizar mensaje de confirmación"
+
+#: visual-form-builder.php:1448
+msgid "Confirmation"
+msgstr "Confirmación"
+
+#: visual-form-builder.php:1449
+msgid "Customize Notification Email"
+msgstr "Personalizar email de notificación"
+
+#: visual-form-builder.php:1449
+msgid "Notification"
+msgstr "Notificación"
+
+#: visual-form-builder.php:1453
+msgid "The forms you build here will send information to one or more email addresses when submitted by a user on your site.  Use the fields below to customize the details of that email."
+msgstr "Los formularios creados aquí enviarán información a una o más direcciones de email cuando un usuario de tu sitio los envíe. Usa los campos a continuación para personalizar los detalles de ese email."
+
+#: visual-form-builder.php:1457
+msgid "E-mail Subject"
+msgstr "Asunto email"
+
+#: visual-form-builder.php:1469
+msgid "Select a required text field"
+msgstr "Selecciona un campo de texto obligatorio"
+
+#: visual-form-builder.php:1480
+msgid "Sender E-mail"
+msgstr "Email remitente"
+
+#: visual-form-builder.php:1483
+msgid "OR"
+msgstr "O"
+
+#: visual-form-builder.php:1485
+#: visual-form-builder.php:1577
+msgid "Select a required text field with email validation"
+msgstr "Selecciona un campo obligatorio con validación de email"
+
+#: visual-form-builder.php:1504
+msgid "E-mail(s) To"
+msgstr "Se envía a"
+
+#: visual-form-builder.php:1520
+msgid "After someone submits a form, you can control what is displayed. By default, it's a message but you can send them to another WordPress Page or a custom URL."
+msgstr "Cuando alguien envía un formulario, puedes controlar qué se mostrará. De manera predeterminada es un mensaje, pero puedes enviarlos a otra página de WordPress o una URL personalizada."
+
+#: visual-form-builder.php:1523
+msgid "Text"
+msgstr "Texto"
+
+#: visual-form-builder.php:1527
+msgid "Page"
+msgstr "Página"
+
+#: visual-form-builder.php:1531
+msgid "Redirect"
+msgstr "Redireccionar"
+
+#: visual-form-builder.php:1538
+msgid "Your form was successfully submitted. Thank you for contacting us."
+msgstr "El formulario ha sido enviado correctamente. Gracias por contactar con nosotros."
+
+#: visual-form-builder.php:1547
+msgid "Select a Page"
+msgstr "Selecciona una página"
+
+#: visual-form-builder.php:1556
+msgid "When a user submits their entry, you can send a customizable notification email."
+msgstr "Cuando un usuario hace un envío, puedes enviar una notificación por email personalizable."
+
+#: visual-form-builder.php:1559
+msgid "Send Confirmation Email to User"
+msgstr "Enviar email de confirmación al usuario"
+
+#: visual-form-builder.php:1574
+msgid "Send To"
+msgstr "Enviar a"
+
+#: visual-form-builder.php:1586
+msgid "Subject"
+msgstr "Asunto"
+
+#: visual-form-builder.php:1590
+msgid "Message"
+msgstr "Mensaje"
+
+#: visual-form-builder.php:1596
+msgid "Include a Copy of the User's Entry"
+msgstr "Incluir una copia del envío del usuario"
+
+#: visual-form-builder.php:1603
+#: visual-form-builder.php:1686
+msgid "Create Form"
+msgstr "Crear formulario"
+
+#: visual-form-builder.php:1603
+#: visual-form-builder.php:1686
+msgid "Save Form"
+msgstr "Guardar formulario"
+
+#: visual-form-builder.php:1607
+msgid "Delete Form"
+msgstr "Borrar formulario"
+
+#: visual-form-builder.php:1617
+msgid "Getting Started"
+msgstr "Comenzando"
+
+#: visual-form-builder.php:1619
+msgid "Enter a name in the Form Name input above and click Create Form."
+msgstr "Introduce un nombre en la casilla de \"nombre formulario\" y haz clic en crear formulario."
+
+#: visual-form-builder.php:1620
+msgid "Click form items from the Form Item box on the left to add to your form."
+msgstr "Haz clic en elementos del formulario de la caja de elementos del formulario a la izquierda para añadirlos a tu formulario."
+
+#: visual-form-builder.php:1621
+msgid "After adding an item, drag and drop to put them in the order you want."
+msgstr "Después de añadir un elemento, arrastra y suelta para ponerlo en el orden que quieras."
+
+#: visual-form-builder.php:1622
+msgid "Click the down arrow on each item to reveal configuration options."
+msgstr "Haz clic en la fecha hacia abajo de cada elemento para visualizar opciones de configuración."
+
+#: visual-form-builder.php:1623
+msgid "Configure the Email Details section."
+msgstr "Configurar sección detalles del email."
+
+#: visual-form-builder.php:1624
+msgid "When you have finished building your form, click the Save Form button."
+msgstr "Cuando hayas terminado de construir tu formulario, haz clic en el botón guardar formulario."
+
+#: visual-form-builder.php:1627
+msgid "Need more help?"
+msgstr "¿Necesitas más ayuda?"
+
+#: visual-form-builder.php:1629
+msgid "Click on the Help tab at the top of this page."
+msgstr "Haz clic en la pestaña de ayuda en la parte superior de esta página."
+
+#: visual-form-builder.php:1634
+msgid "Help Promote Visual Form Builder"
+msgstr "Ayuda a promocionar Visual Form Builder"
+
+#: visual-form-builder.php:1636
+msgid "Follow me on Twitter"
+msgstr "Sígueme en Twitter"
+
+#: visual-form-builder.php:1637
+msgid "Rate Visual Form Builder on WordPress.org"
+msgstr "Califica Visual Form Builder en WordPress.org"
+
+#: visual-form-builder.php:1646
+msgid "New Features of Visual Form Builder Pro"
+msgstr "Nuevas características de Visual Form Builder Pro"
+
+#: visual-form-builder.php:1648
+msgid "10 new Form Fields (Username, Password, Color Picker, Autocomplete, and more)"
+msgstr "10 nuevos campos de formulario (usuario, contraseña, selector de color, autocompletar, y más)"
+
+#: visual-form-builder.php:1649
+msgid "Edit and Update Entries"
+msgstr "Editar y actualizar entradas"
+
+#: visual-form-builder.php:1650
+msgid "Quality HTML Email Template"
+msgstr "Plantilla de email HTML de calidad"
+
+#: visual-form-builder.php:1651
+msgid "Email Designer"
+msgstr "Diseñador email"
+
+#: visual-form-builder.php:1652
+msgid "Analytics"
+msgstr "Estadísticas"
+
+#: visual-form-builder.php:1653
+msgid "Data &amp; Form Migration"
+msgstr "Migración de datos y formularios"
+
+#: visual-form-builder.php:1654
+msgid "PayPal Integration"
+msgstr "Integración con Paypal"
+
+#: visual-form-builder.php:1655
+msgid "Form Paging"
+msgstr "Paginación formulario"
+
+#: visual-form-builder.php:1656
+msgid "No License Key"
+msgstr "Sin llave de licencia"
+
+#: visual-form-builder.php:1657
+msgid "Unlimited Use"
+msgstr "Uso ilimitado"
+
+#: visual-form-builder.php:1658
+msgid "Automatic Updates"
+msgstr "Actualizaciones automáticas"
+
+#: visual-form-builder.php:1661
+msgid "Learn more about some of these features"
+msgstr "Conoce más acerca de estas características"
+
+#: visual-form-builder.php:1662
+msgid "Buy Now"
+msgstr "Comprar ahora"
+
+#: visual-form-builder.php:1662
+msgid "Only $10"
+msgstr "Sólo $10"
+
+#: visual-form-builder.php:1668
+msgid "Select form inputs from the box at left to begin building your custom form. An initial fieldset has been automatically added to get you started."
+msgstr "Selecciona campos de entrada de la caja de la izquierda para comenzar a construir tu formulario. Se ha añadido automáticamente un conjuto de campos para que empieces."
+
+#: visual-form-builder.php:1848
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. Verification not required."
+msgstr "Conectado como <a href=\"%1$s\">%2$s</a>. Verificación no necesaria."
+
+#: visual-form-builder.php:2083
+msgid "Verification"
+msgstr "Verificación"
+
+#: visual-form-builder.php:2087
+msgid "Please enter any two digits with"
+msgstr "Por favor introduce dos números"
+
+#: visual-form-builder.php:2087
+msgid "no"
+msgstr "sin"
+
+#: visual-form-builder.php:2087
+msgid "spaces (Example: 12)"
+msgstr "espacios (Por ejemplo: 23)"
+
+#: visual-form-builder.php:2096
+msgid "This box is for spam protection"
+msgstr "Esta casilla es para protección antispam"
+
+#: visual-form-builder.php:2096
+msgid "please leave it blank"
+msgstr "por favor déjalo en blanco"
+
+#: visual-form-builder.php:2130
+msgid "Security check"
+msgstr "Comprobación de seguridad"
+
+#: visual-form-builder.php:2383
+msgid "Ooops! Looks like you have failed the security validation for this form. Please go back and try again."
+msgstr "¡Vaya! Parece que has fallado la validación de seguridad de este formulario. Por favor vuelve atrás e inténtalo de nuevo."
+
+#~ msgid "(multiple emails separated by commas)"
+#~ msgstr "(múltiples emails separados por comas)"
+
+#~ msgid "Options (separated by commas)"
+#~ msgstr "Opciones (separadas por comas)"
+
+#~ msgid "Submit"
+#~ msgstr "Enviar"
