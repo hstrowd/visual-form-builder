@@ -534,11 +534,12 @@ class Visual_Form_Builder{
 					
 					$verify_fieldset_parent_id = $wpdb->insert_id;
 					
+					// TODO: Update this to default to asking for a two digit number, but give the option of swapping in a recaptcha.
 					$secret = array(
 						'form_id' => $new_form_selected,
 						'field_key' => 'secret',
 						'field_type' => 'secret',
-						'field_name' => 'Please enter any two digits with no spaces (Example: 12)',
+						'field_name' => 'recaptcha',
 						'field_size' => 'medium',
 						'field_required' => 'yes',
 						'field_parent' => $verify_fieldset_parent_id,
@@ -704,6 +705,7 @@ class Visual_Form_Builder{
 						/* If this form doesn't have a secret field, add one */
 						if ( $is_secret == NULL ) {
 							
+						  //TODO: Update this with a captcha verification.
 							/* Adjust the sequence */
 							$secret = array(
 								'form_id' => $form_id,
@@ -2108,6 +2110,15 @@ class Visual_Form_Builder{
 							}
 							
 							$validation = ' {digits:true,maxlength:2,minlength:2}';
+
+							// Support the use of captchas if the user would like.
+							if( $field->field_name == 'recaptcha' && $logged_in_display == '') {
+							  $verification .= '<li class"item item-' .$field->field_type . '>';
+							  $verification .= '<input type="hidden" name="_vfb-secret" value="vfb-' . esc_html($field->field_name) . '" />';
+								require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
+								$publickey = "your_public_key_here"; // you got this from the signup page
+								$verification .= recaptcha_get_html($publickey); 
+							} else {
 							$verification .= '<li class="item item-' . $field->field_type . '"' . $logged_in_display . '><label for="vfb-' . esc_html( $field->field_key ) . '-' . $field->field_id . '" class="desc">'. stripslashes( $field->field_name ) . $required_span . '</label>';
 							
 							/* Set variable for testing if required is Yes/No */
@@ -2120,6 +2131,7 @@ class Visual_Form_Builder{
 								$verification .= '<span><input type="text" name="vfb-' . esc_html( $field->field_key ) . '-' . $field->field_id . '" id="vfb-' . esc_html( $field->field_key )  . '-' . $field->field_id . '" value="' . $logged_in_value . '" class="text ' . $field->field_size . $required . $validation . $css . '" /><label>' . html_entity_decode( stripslashes( $field->field_description ) ) . '</label></span>';
 							else
 								$verification .= '<input type="text" name="vfb-' . esc_html( $field->field_key ) . '-' . $field->field_id . '" id="vfb-' . esc_html( $field->field_key )  . '-' . $field->field_id . '" value="' . $logged_in_value . '" class="text ' . $field->field_size . $required . $validation . $css . '" />';
+							}
 						}
 					}
 					
@@ -2342,6 +2354,7 @@ class Visual_Form_Builder{
 				
 				/* Make sure the verification displays even if they have not updated their form */
 				if ( $verification == '' ) {
+				  // Default verification is to ask for any two digit number.
 					$verification = '<fieldset class="fieldset verification">
 							<div class="legend">
 								<h3>' . __( 'Verification' , 'visual-form-builder') . '</h3>
@@ -2386,11 +2399,25 @@ class Visual_Form_Builder{
 		
 		$required = ( isset( $_REQUEST['_vfb-required-secret'] ) && $_REQUEST['_vfb-required-secret'] == '0' ) ? false : true;
 		$secret_field = ( isset( $_REQUEST['_vfb-secret'] ) ) ? $_REQUEST['_vfb-secret'] : '';
-		
+
 		/* If the verification is set to required, run validation check */
 		if ( true == $required && !empty( $secret_field ) )
+		  if ( $secret_field == 'vfb-recaptcha' ) {
+  require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
+  $privatekey = "your_private_key_here";
+  $resp = recaptcha_check_answer ($privatekey,
+                                $_SERVER["REMOTE_ADDR"],
+                                $_POST["recaptcha_challenge_field"],
+                                $_POST["recaptcha_response_field"]);
+
+  if (!$resp->is_valid) {
+    // What happens when the CAPTCHA was entered incorrectly
+    wp_die (__("Security check: Incorrect reCAPTCHA input. Please try again!"));
+  }
+		  } else {
 			if ( !is_numeric( $_REQUEST[ $secret_field ] ) && strlen( $_REQUEST[ $secret_field ] ) !== 2 )
 				wp_die( __( 'Security check: failed secret question. Please try again!' , 'visual-form-builder') );
+		  }
 		
 		/* Test if it's a known SPAM bot */
 		if ( $this->isBot() )
