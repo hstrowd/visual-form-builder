@@ -538,8 +538,8 @@ class Visual_Form_Builder{
 					$secret = array(
 						'form_id' => $new_form_selected,
 						'field_key' => 'secret',
-						'field_type' => 'secret',
-						'field_name' => 'recaptcha',
+						'field_type' => 'recaptcha',
+						'field_name' => 'reCAPTCHA',
 						'field_size' => 'medium',
 						'field_required' => 'yes',
 						'field_parent' => $verify_fieldset_parent_id,
@@ -677,6 +677,7 @@ class Visual_Form_Builder{
 						/* Check if a submit field type exists for backwards compatibility upgrades */
 						$is_verification = $wpdb->get_var( "SELECT field_id FROM $this->field_table_name WHERE field_type = 'verification' AND form_id = $form_id" );
 						$is_secret = $wpdb->get_var( "SELECT field_id FROM $this->field_table_name WHERE field_type = 'secret' AND form_id = $form_id" );
+						$is_recaptcha = $wpdb->get_var( "SELECT field_id FROM $this->field_table_name WHERE field_type = 'recaptcha' AND form_id = $form_id" );
 						$is_submit = $wpdb->get_var( "SELECT field_id FROM $this->field_table_name WHERE field_type = 'submit' AND form_id = $form_id" );
 						
 						/* Decrement sequence */
@@ -703,9 +704,9 @@ class Visual_Form_Builder{
 						$verify_fieldset_parent_id = ( $verification_id !== false ) ? $verification_id : 0;
 						
 						/* If this form doesn't have a secret field, add one */
-						if ( $is_secret == NULL ) {
+						if ( $is_secret == NULL && $is_recaptcha == NULL ) {
 							
-						  //TODO: Update this with a captcha verification.
+						  //Default anti-spam question is for any two digit number.
 							/* Adjust the sequence */
 							$secret = array(
 								'form_id' => $form_id,
@@ -1110,6 +1111,27 @@ class Visual_Form_Builder{
                                 </label>
                             </p>
 						
+						<?php elseif( $field->field_type == 'recaptcha' ) : ?>
+							<!-- reCAPTCHA -->
+										<input type="hidden" value="reCAPTCHA" name="field_name-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-name-<?php echo $field->field_id; ?>" maxlength="255" />
+
+							<p class="description description-wide">
+								<label for="edit-form-item-description-<?php echo $field->field_id; ?>">
+										<?php _e( 'Public Key' , 'visual-form-builder'); ?>
+                                        <span class="vfb-tooltip" title="About Public Key" rel="This is the public key that Google provides when you register to use reCAPTCHAs on your site. It is required to display reCAPTCHA images.">(?)</span>
+                                        <br />
+										<input type="text" value="<?php echo stripslashes( htmlspecialchars_decode( $field->field_description ) ); ?>" name="field_description-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-description-<?php echo $field->field_id; ?>" maxlength="255" />
+								</label>
+							</p>
+							<p class="description description-wide">
+								<label for="edit-form-item-default-<?php echo $field->field_id; ?>">
+                                	<?php _e( 'Private Key', 'visual-form-builder' ); ?>
+                                	<span class="vfb-tooltip" title="About Private Key" rel="This is the private key that Google provides when you register to use reCAPTCHAs on your site. It is required to validate users' answers.">(?)</span>
+                                    <br />
+									<input type="text" value="<?php echo stripslashes( htmlspecialchars_decode( $field->field_default ) ); ?>" name="field_default-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-default-<?php echo $field->field_id; ?>" maxlength="255" />
+								</label>
+							</p>
+						
 						<?php elseif( $field->field_type == 'instructions' ) : ?>
 							<!-- Instructions -->
 							<p class="description description-wide">
@@ -1366,7 +1388,7 @@ class Visual_Form_Builder{
 							<?php endif; ?>
 						<?php endif; ?>
 						
-						<?php if ( !in_array( $field->field_type, array( 'verification', 'secret', 'submit' ) ) ) : ?>
+						<?php if ( !in_array( $field->field_type, array( 'verification', 'secret', 'recaptcha', 'submit' ) ) ) : ?>
 							<div class="menu-item-actions description-wide submitbox">
 								<a href="<?php echo esc_url( wp_nonce_url( admin_url('options-general.php?page=visual-form-builder&amp;action=delete_field&amp;form=' . $form_nav_selected_id . '&amp;field=' . $field->field_id ), 'delete-field-' . $form_nav_selected_id ) ); ?>" class="item-delete submitdelete deletion"><?php _e( 'Remove' , 'visual-form-builder'); ?></a>
 							</div>
@@ -1493,6 +1515,7 @@ class Visual_Form_Builder{
                                             <li><input type="submit" id="form-element-html" class="button-secondary" name="field_type" value="HTML"<?php echo $disabled; ?> /></li>
                                             <li><input type="submit" id="form-element-file" class="button-secondary" name="field_type" value="File Upload"<?php echo $disabled; ?> /></li>
                                             <li><input type="submit" id="form-element-instructions" class="button-secondary" name="field_type" value="Instructions"<?php echo $disabled; ?> /></li>
+																								  //TODO: Add a button for a recaptcha.
                                         </ul>
                                     </div>
                                 </div>
@@ -2077,7 +2100,7 @@ class Visual_Form_Builder{
 						$sec_id = $field->field_id;
 						$open_section = true;
 					}
-					elseif ( !in_array( $field->field_type, array( 'verification', 'secret', 'submit' ) ) ) {
+					elseif ( !in_array( $field->field_type, array( 'verification', 'secret', 'submit', 'recaptcha' ) ) ) {
 						
 						$columns_choice = ( in_array( $field->field_type, array( 'radio', 'checkbox' ) ) ) ? " $field->field_size" : '';
 						
@@ -2085,12 +2108,12 @@ class Visual_Form_Builder{
 							$output .= '<li class="item item-' . $field->field_type . $columns_choice . $layout . '"><label for="vfb-' . esc_html( $field->field_key ) . '-' . $field->field_id . '" class="desc">'. stripslashes( $field->field_name ) . $required_span . '</label>';
 						}
 					}
-					elseif ( in_array( $field->field_type, array( 'verification', 'secret' ) ) ) {
+					elseif ( in_array( $field->field_type, array( 'verification', 'secret', 'recaptcha' ) ) ) {
 						
 						if ( $field->field_type == 'verification' )
 							$verification .= '<fieldset class="fieldset fieldset-' . $count . ' ' . $field->field_key . $css . $page . '"><div class="legend"><h3>' . stripslashes( $field->field_name ) . '</h3></div><ul class="section section-' . $count . '">';
 						
-						if ( $field->field_type == 'secret' ) {
+						if ( $field->field_type == 'secret' || $field->field_type == 'recaptcha' ) {
 							/* Default logged in values */
 							$logged_in_display = '';
 							$logged_in_value = '';
@@ -2112,11 +2135,13 @@ class Visual_Form_Builder{
 							$validation = ' {digits:true,maxlength:2,minlength:2}';
 
 							// Support the use of captchas if the user would like.
-							if( $field->field_name == 'recaptcha' && $logged_in_display == '') {
+							if( $field->field_type == 'recaptcha' && $logged_in_display == '') {
 							  $verification .= '<li class"item item-' .$field->field_type . '>';
 							  $verification .= '<input type="hidden" name="_vfb-secret" value="vfb-' . esc_html($field->field_name) . '" />';
 								require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
-								$publickey = "your_public_key_here"; // you got this from the signup page
+								// Public keys are currently stored in the field's description because adding extra columns for this 
+								// field type would have been a can be taken as a separate task to reduce risk.
+								$publickey = $field->field_description; // you got this from the signup page
 								$verification .= recaptcha_get_html($publickey); 
 							} else {
 							$verification .= '<li class="item item-' . $field->field_type . '"' . $logged_in_display . '><label for="vfb-' . esc_html( $field->field_key ) . '-' . $field->field_id . '" class="desc">'. stripslashes( $field->field_name ) . $required_span . '</label>';
@@ -2346,7 +2371,7 @@ class Visual_Form_Builder{
 					}
 
 					/* Closing </li> */
-					$output .= ( !in_array( $field->field_type , array( 'verification', 'secret', 'submit', 'fieldset', 'section' ) ) ) ? '</li>' : '';
+					$output .= ( !in_array( $field->field_type , array( 'verification', 'secret', 'recaptcha', 'submit', 'fieldset', 'section' ) ) ) ? '</li>' : '';
 				}
 				
 				/* Close user-added fields */
@@ -2404,7 +2429,13 @@ class Visual_Form_Builder{
 		if ( true == $required && !empty( $secret_field ) )
 		  if ( $secret_field == 'vfb-recaptcha' ) {
   require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
-  $privatekey = "your_private_key_here";
+  // Public keys are currently stored in the field's description because adding extra columns for this 
+  // field type would have been a can be taken as a separate task to reduce risk.
+  $privatekey = $wpdb->get_results( "SELECT fields.field_default FROM $this->field_table_name AS fields WHERE fields.form_id = $form_id AND field_type = 'recaptcha'" );
+  if(!isset($privatekey)) {
+    wp_die( __("Unable to validate the reCAPTCHA input at this time. Please try again later") );
+    // TODO: Log an error here, because this indicates that the form is not properly configured and/or not behaving properly.
+  }
   $resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],
@@ -2412,7 +2443,7 @@ class Visual_Form_Builder{
 
   if (!$resp->is_valid) {
     // What happens when the CAPTCHA was entered incorrectly
-    wp_die (__("Security check: Incorrect reCAPTCHA input. Please try again!"));
+    wp_die( __("Security check: Incorrect reCAPTCHA input. Please try again!") );
   }
 		  } else {
 			if ( !is_numeric( $_REQUEST[ $secret_field ] ) && strlen( $_REQUEST[ $secret_field ] ) !== 2 )
