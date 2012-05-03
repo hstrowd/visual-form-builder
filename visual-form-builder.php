@@ -2427,16 +2427,19 @@ class Visual_Form_Builder{
 
 		/* If the verification is set to required, run validation check */
 		if ( true == $required && !empty( $secret_field ) )
-		  if ( $secret_field == 'vfb-recaptcha' ) {
+		  if ( $secret_field == 'vfb-reCAPTCHA' ) {
+  $form_id = absint( $_REQUEST['form_id'] );
+
   require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
   // Public keys are currently stored in the field's description because adding extra columns for this 
   // field type would have been a can be taken as a separate task to reduce risk.
-  $privatekey = $wpdb->get_results( "SELECT fields.field_default FROM $this->field_table_name AS fields WHERE fields.form_id = $form_id AND field_type = 'recaptcha'" );
+  $privatekey = $wpdb->get_col( "SELECT fields.field_default FROM $this->field_table_name AS fields WHERE fields.form_id = $form_id AND field_type = 'recaptcha'", 0 );
   if(!isset($privatekey)) {
     wp_die( __("Unable to validate the reCAPTCHA input at this time. Please try again later") );
     // TODO: Log an error here, because this indicates that the form is not properly configured and/or not behaving properly.
   }
-  $resp = recaptcha_check_answer ($privatekey,
+
+  $resp = recaptcha_check_answer ($privatekey[0],
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],
                                 $_POST["recaptcha_response_field"]);
