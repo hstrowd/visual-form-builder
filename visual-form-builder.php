@@ -944,7 +944,7 @@ class Visual_Form_Builder{
 			/* Create the field */
 			$wpdb->insert( $this->field_table_name, $newdata );
 			$insert_id = $wpdb->insert_id;
-			$update_these = array( 'verification', 'secret', 'submit' );
+			$update_these = array( 'verification', 'secret', 'recaptcha', 'submit' );
 			
 			foreach ( $update_these as $update ) {
 				$where = array(
@@ -955,7 +955,6 @@ class Visual_Form_Builder{
 				$wpdb->update( $this->field_table_name, array( 'field_sequence' => $field_sequence + 1 ), $where );
 				$field_sequence++;
 			}
-			
 			
 			echo $this->field_output( $data['form_id'], $insert_id );
 		}
