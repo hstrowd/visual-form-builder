@@ -1110,26 +1110,40 @@ class Visual_Form_Builder{
                                 </label>
                             </p>
 						
-						<?php elseif( $field->field_type == 'recaptcha' ) : ?>
-							<!-- reCAPTCHA -->
-										<input type="hidden" value="reCAPTCHA" name="field_name-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-name-<?php echo $field->field_id; ?>" maxlength="255" />
+				       <?php elseif( $field->field_type == 'recaptcha' ) : ?>
+				         <!-- reCAPTCHA -->
+				         <input type="hidden" value="reCAPTCHA" name="field_name-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-name-<?php echo $field->field_id; ?>" maxlength="255" />
 
-							<p class="description description-wide">
-								<label for="edit-form-item-description-<?php echo $field->field_id; ?>">
-										<?php _e( 'Public Key' , 'visual-form-builder'); ?>
-                                        <span class="vfb-tooltip" title="About Public Key" rel="This is the public key that Google provides when you register to use reCAPTCHAs on your site. It is required to display reCAPTCHA images.">(?)</span>
-                                        <br />
-										<input type="text" value="<?php echo stripslashes( htmlspecialchars_decode( $field->field_description ) ); ?>" name="field_description-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-description-<?php echo $field->field_id; ?>" maxlength="255" />
-								</label>
-							</p>
-							<p class="description description-wide">
-								<label for="edit-form-item-default-<?php echo $field->field_id; ?>">
-                                	<?php _e( 'Private Key', 'visual-form-builder' ); ?>
-                                	<span class="vfb-tooltip" title="About Private Key" rel="This is the private key that Google provides when you register to use reCAPTCHAs on your site. It is required to validate users' answers.">(?)</span>
-                                    <br />
-									<input type="text" value="<?php echo stripslashes( htmlspecialchars_decode( $field->field_default ) ); ?>" name="field_default-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-default-<?php echo $field->field_id; ?>" maxlength="255" />
-								</label>
-							</p>
+				         <p class="description description-wide">
+				           <label for="edit-form-item-description-<?php echo $field->field_id; ?>">
+				             <?php _e( 'Public Key' , 'visual-form-builder'); ?>
+				             <span class="vfb-tooltip" title="About Public Key" rel="This is the public key that Google provides when you register to use reCAPTCHAs on your site. It is required to display reCAPTCHA images.">(?)</span>
+                                             <br />
+					     <input type="text" value="<?php echo stripslashes( htmlspecialchars_decode( $field->field_description ) ); ?>" name="field_description-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-description-<?php echo $field->field_id; ?>" maxlength="255" />
+					   </label>
+					 </p>
+					 <p class="description description-wide">
+					   <label for="edit-form-item-default-<?php echo $field->field_id; ?>">
+                                	     <?php _e( 'Private Key', 'visual-form-builder' ); ?>
+                                	     <span class="vfb-tooltip" title="About Private Key" rel="This is the private key that Google provides when you register to use reCAPTCHAs on your site. It is required to validate users' answers.">(?)</span>
+					     <br />
+					     <input type="text" value="<?php echo stripslashes( htmlspecialchars_decode( $field->field_default ) ); ?>" name="field_default-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-default-<?php echo $field->field_id; ?>" maxlength="255" />
+					   </label>
+					 </p>
+					 <p class="description description-wide">
+					    <label for="edit-form-item-css-<?php echo $field->field_id; ?>">
+					     <?php _e( 'Theme' , 'visual-form-builder'); ?>
+                                	     <span class="vfb-tooltip" title="About Theme" rel="This dictates the theme and styling that will be used for the reCAPTCHA. There are four standard themes: red (default), white, blackglass, and clean. You can also choose a custom recaptcha that allows you to style it yourself.">(?)</span>
+					     <br />
+						<select name="field_css-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-css-<?php echo $field->field_id; ?>">
+  						  <option value="red" <?php selected( $field->field_css, 'red' ); ?>><?php _e( 'Red' , 'visual-form-builder'); ?></option>
+			                          <option value="white" <?php selected( $field->field_css, 'white' ); ?>><?php _e( 'White' , 'visual-form-builder'); ?></option>
+			                          <option value="blackglass" <?php selected( $field->field_css, 'blackglass' ); ?>><?php _e( 'Black Glass' , 'visual-form-builder'); ?></option>
+			                          <option value="clean" <?php selected( $field->field_css, 'clean' ); ?>><?php _e( 'Clean' , 'visual-form-builder'); ?></option>
+			                          <option value="custom" <?php selected( $field->field_css, 'custom' ); ?>><?php _e( 'Custom' , 'visual-form-builder'); ?></option>
+					        </select>
+					   </label>
+					 </p>
 						
 						<?php elseif( $field->field_type == 'instructions' ) : ?>
 							<!-- Instructions -->
@@ -1514,7 +1528,7 @@ class Visual_Form_Builder{
                                             <li><input type="submit" id="form-element-html" class="button-secondary" name="field_type" value="HTML"<?php echo $disabled; ?> /></li>
                                             <li><input type="submit" id="form-element-file" class="button-secondary" name="field_type" value="File Upload"<?php echo $disabled; ?> /></li>
                                             <li><input type="submit" id="form-element-instructions" class="button-secondary" name="field_type" value="Instructions"<?php echo $disabled; ?> /></li>
-																								  //TODO: Add a button for a recaptcha.
+					    <!-- //TODO: Add a button for a recaptcha. -->
                                         </ul>
                                     </div>
                                 </div>
@@ -2137,11 +2151,43 @@ class Visual_Form_Builder{
 							if( $field->field_type == 'recaptcha' && $logged_in_display == '') {
 							  $verification .= '<li class"item item-' .$field->field_type . '>';
 							  $verification .= '<input type="hidden" name="_vfb-secret" value="vfb-' . esc_html($field->field_name) . '" />';
-								require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
-								// Public keys are currently stored in the field's description because adding extra columns for this 
-								// field type would have been a can be taken as a separate task to reduce risk.
-								$publickey = $field->field_description; // you got this from the signup page
-								$verification .= recaptcha_get_html($publickey); 
+
+							  if($field->field_css != '') {
+							    switch ($field->field_css) {
+							        case 'custom':
+								  // TODO: Allow the user to specify their custom reCAPTCHA via a textarea.s
+  							          $verification .= '<script type="text/javascript"> var RecaptchaOptions = { theme: "custom", custom_theme_widget: "recaptcha_widget" }; </script>
+ <div id="recaptcha_widget" style="display:none">
+    <div id="recaptcha_area" class="custom_theme">
+      <div id="recaptcha_image"></div>
+      <div id="recaptcha_controls">
+        <div class="recaptcha_input_area">
+          <label for="recaptcha_response_field" class="recaptcha_input_area_text">
+            <span id="recaptcha_instructions_image" class="recaptcha_only_if_image recaptcha_only_if_no_incorrect_sol">Type the two words:</span>
+            <span id="recaptcha_instructions_audio" class="recaptcha_only_if_no_incorrect_sol recaptcha_only_if_audio">Type what you hear:</span>
+            <span id="recaptcha_instructions_error" class="recaptcha_only_if_incorrect_sol">Incorrect. Try again.</span>
+          </label>
+          <br>
+          <input name="recaptcha_response_field" id="recaptcha_response_field" type="text" autocorrect="off" autocapitalize="off">
+        </div>
+        <div id="recaptcha_buttons">
+          <div class="recaptcha_button"><a id="recaptcha_reload_btn" title="Get a new challenge" href="javascript:Recaptcha.reload();"><img id="recaptcha_reload" width="25" height="17" src="http://www.google.com/recaptcha/api/img/white/refresh.gif" alt="Get a new challenge"></a></div>
+          <div class="recaptcha_button"><a id="recaptcha_switch_audio_btn" class="recaptcha_only_if_image" title="Get an audio challenge" href="javascript:Recaptcha.switch_type(\'audio\');"><img id="recaptcha_switch_audio" width="25" height="16" alt="Get an audio challenge" src="http://www.google.com/recaptcha/api/img/white/audio.gif"></a><a id="recaptcha_switch_img_btn" class="recaptcha_only_if_audio" title="Get a visual challenge" href="javascript:Recaptcha.switch_type(\'image\');"><img id="recaptcha_switch_img" width="25" height="16" alt="Get a visual challenge" src="http://www.google.com/recaptcha/api/img/white/text.gif"></a></div>
+          <div class="recaptcha_button"><a id="recaptcha_whatsthis_btn" title="Help" href="http://www.google.com/recaptcha/help?c=03AHJ_VuusYIeXoWUrMHkqRArLBCeUIv29RwY7iJPFx9asrUOqgeekFGPTwdlPTo0OyUfye2rkN8t_k9mZr5JHUfAs_j75vxXUKtImpv2JcDXsn5Uv4aECgErhEtfzlEYJUv-cblP5xbf6sSBm1Cu2nlzm8ufecNQkxtu4swFVGUYKPAZm02vy6b8&amp;hl=en" target="_blank"><img id="recaptcha_whatsthis" width="25" height="16" src="http://www.google.com/recaptcha/api/img/white/help.gif" alt="Help"></a></div>
+        </div>
+      </div>
+    </div>';
+								  break;
+							        default:
+  							          $verification .= '<script type="text/javascript"> var RecaptchaOptions = { theme : "' . $field->field_css . '" }; </script>';
+							    }
+							  }
+
+							  require_once(plugin_dir_path( __FILE__ ) . 'recaptcha-php-1.11/recaptchalib.php');
+							  // Public keys are currently stored in the field's description because adding extra columns for this 
+							  // field type would have been a can be taken as a separate task to reduce risk.
+							  $publickey = $field->field_description; // you got this from the signup page
+							  $verification .= recaptcha_get_html($publickey);
 							} else {
 							$verification .= '<li class="item item-' . $field->field_type . '"' . $logged_in_display . '><label for="vfb-' . esc_html( $field->field_key ) . '-' . $field->field_id . '" class="desc">'. stripslashes( $field->field_name ) . $required_span . '</label>';
 							
